@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Agenda</title>
+    <script src="https://kit.fontawesome.com/367620255b.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>Mon Agenda</h1>
+
+    <!--Form Container, Contient tout le formulaire-->
+    <div id="formContainer">
+        <input id="userInput" type="text" placeholder="Ajouter une Tâche">
+        <button onclick="addElement()">Ajouter</button>
+    </div>
+    <!--List ou apparaitra les inputs-->
+    <ul id="eventList"></ul>
+
+    <script>
+        // Fonction addElement qui va permettre à l'utilisateur d'ajouter ou supprimer des Elements de l'Agenda
+        function addElement() {
+            const userInput = document.getElementById("userInput").value;
+            const textInput = document.createTextNode(userInput);
+            const delBtn = document.createElement("button");
+            const editBtn = document.createElement("button");
+            const createContainer = document.createElement("container");
+            const createList = document.createElement("li");
+
+            // Creation de chaque <li> avec un appendChild, à chaque input cela créer un élement <li> dans la liste <ul> avec le contenu
+            createList.appendChild(textInput);
+            
+            // Boutton de modification
+            /*editBtn.setAttribute('class', 'delete');
+            editBtn.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;*/
+
+            // Boutton de suppression 
+            delBtn.setAttribute('class', 'delete');
+            delBtn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+          
+            // Container pour avoir chaque <li> et chaque delBtn ensemble
+                createContainer.appendChild(createList);
+                //createContainer.appendChild(editBtn);
+                createContainer.appendChild(delBtn);
+                createContainer.setAttribute('class', 'allContainer');
+            
+            // Fonction qui permet la modification de l'élemement avec le boutton editBtn
+            /*editBtn.addEventListener('click', function () {
+                const editPrompt = prompt('Veuillez entrer une nouvelle valeur : ');
+                createList = editPrompt;
+            });*/
+
+            // Fonction qui permet la suppression du container avec le boutton delBtn
+            delBtn.addEventListener('click', function () {
+                createContainer.remove();
+            });
+
+            // Generation des élements input dans la liste
+            document.getElementById("eventList").appendChild(createContainer);
+        }
+    </script> 
+
+</body>
+
+<style>
+    ul,
+    li {
+        list-style: none;
+    }
+
+    .delete {
+        margin-left: 10px;
+    }
+
+    .allContainer {
+        display: flex;
+    }
+</style>
+</html>
