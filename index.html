@@ -72,12 +72,16 @@
             document.getElementById("eventList").appendChild(createContainer);
 
     }
+
+    // Ici on la le script du dark mode
         var btn = document.getElementById("darkModeBtn");
         var element = document.body;
 
         btn.style.backgroundColor = "red";
         btn.innerHTML = "O"
 
+
+    // Ici on la la fonction du dark mode
         function darkMode() {
             element.classList.toggle("dark");
             btn.classList.toggle("green");
