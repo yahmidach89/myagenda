@@ -1,0 +1,21 @@
+JS-3 Folder
+
+In this folder we habe one only html file named index.html filled with CSS style and some sript in JavaScript
+
+1. HTML 
+
+We have a basic HTML which show the input field with the add button
+and also the dark mode button in the top corner left of the page
+
+It will be filled with JS Script
+
+2. JavaScript
+
+This script work for a todo list look a like
+
+We can Add Edit and delete what the user input in the field with some buttons
+We have also a dark mode implemented 
+
+3. CSS
+
+The CSS style the whole HTML code but it style also the Scripts from the JS

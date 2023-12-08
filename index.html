@@ -5,16 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Agenda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/367620255b.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <h1>Mon Agenda</h1>
+    <container class="darkModeContainer">
+        <div class="dmTitle"><strong>Dark Mode : </strong></div>
+        <button id="darkModeBtn" onclick="darkMode()"></button>
+    </container>
+    
 
     <!--Form Container, Contient tout le formulaire-->
-    <div id="formContainer">
-        <input id="userInput" type="text" placeholder="Ajouter une Tâche">
-        <button onclick="addElement()">Ajouter</button>
+    <div class="formContainer">
+        <h1><strong>Mon Agenda</strong></h1>
+        <label class="labetUserInput">Ajouter une tâche : </label>
+        <br>
+        <input id="userInput" type="text" placeholder="Ajoutez une tâche ici" onfocus="this.placeholder=''" onblur="this.placeholder='Ajouter une tâche'">
+        <br>
+        <button class="onClickBtn" onclick="addElement()">Ajouter</button>
     </div>
     <!--List ou apparaitra les inputs-->
     <ul id="eventList"></ul>
@@ -27,30 +38,30 @@
             const delBtn = document.createElement("button");
             const editBtn = document.createElement("button");
             const createContainer = document.createElement("container");
-            const createList = document.createElement("li");
+            const textList = document.createElement("li");
 
             // Creation de chaque <li> avec un appendChild, à chaque input cela créer un élement <li> dans la liste <ul> avec le contenu
-            createList.appendChild(textInput);
+            textList.appendChild(textInput);
             
             // Boutton de modification
-            /*editBtn.setAttribute('class', 'delete');
-            editBtn.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;*/
+            editBtn.setAttribute('class', 'edit');
+            editBtn.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
 
             // Boutton de suppression 
             delBtn.setAttribute('class', 'delete');
             delBtn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
           
             // Container pour avoir chaque <li> et chaque delBtn ensemble
-                createContainer.appendChild(createList);
-                //createContainer.appendChild(editBtn);
+                createContainer.appendChild(textList);
+                createContainer.appendChild(editBtn);
                 createContainer.appendChild(delBtn);
                 createContainer.setAttribute('class', 'allContainer');
             
             // Fonction qui permet la modification de l'élemement avec le boutton editBtn
-            /*editBtn.addEventListener('click', function () {
+            editBtn.addEventListener('click', function () {
                 const editPrompt = prompt('Veuillez entrer une nouvelle valeur : ');
-                createList = editPrompt;
-            });*/
+                textList.textContent = editPrompt;
+            }); 
 
             // Fonction qui permet la suppression du container avec le boutton delBtn
             delBtn.addEventListener('click', function () {
@@ -59,23 +70,158 @@
 
             // Generation des élements input dans la liste
             document.getElementById("eventList").appendChild(createContainer);
+
+    }
+        var btn = document.getElementById("darkModeBtn");
+        var element = document.body;
+
+        btn.style.backgroundColor = "red";
+        btn.innerHTML = "O"
+
+        function darkMode() {
+            element.classList.toggle("dark");
+            btn.classList.toggle("green");
+
+            if (element.classList.contains("dark")) {
+                btn.style.backgroundColor = "green";
+                btn.innerHTML = "I"
+
+            } else {
+                btn.style.backgroundColor = "red";
+                btn.innerHTML = "O"
+            }
         }
+
     </script> 
 
 </body>
 
 <style>
-    ul,
-    li {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+    html {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h1 {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    ul,li {
         list-style: none;
     }
 
     .delete {
         margin-left: 10px;
+        height: 30px;
+        width: 30px;
+        border-style: solid;
+        border-width: 1px;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        border-radius: none;
+    }
+
+    .edit {
+        margin-left: 10px;
+        height: 30px;
+        width: 30px;
+        border-style: solid;
+        border-width: 1px;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        border-radius: none;
     }
 
     .allContainer {
         display: flex;
+        margin-bottom: 10px;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .formContainer {
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+
+    }
+
+    #userInput {
+        border: none;
+        background-color: rgb(167, 167, 167);
+        height: 30px;
+        width: 250px;
+        padding: 10px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        border-bottom: solid;
+        border-left: solid;
+        border-width: 2px;  
+    }
+
+    #userInput::placeholder {
+        font-size: 15px;
+        color: rgb(112, 112, 112);
+    }
+
+    #userInput:focus {
+        font-size: 15px;
+        outline: none;
+    }
+
+    .onClickBtn {
+        height: 45px;
+        width: 100px;
+        background-color: black;
+        color: white;
+        font-size: 15px;
+        border: none;
+        border-radius: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dark {
+            background-color: rgb(48, 48, 48);
+            color: white;
+    }
+
+    /* .onClickBtn-dark {
+        background-color: white;
+        color: black;
+    } */
+
+    #darkModeBtn {
+        height: 30px;
+        width: 30px;
+        color: white;
+        font-size: 15px;
+        border: none;
+        border-radius: none;
+        padding: 5px;
+        border-radius: 200%;
+    }
+
+    .green {
+        background-color: lime;
+    }
+
+    .darkModeContainer {
+        display: flex;
+        text-align: center;
+    }
+
+    .dmTitle {
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        margin-right: 5px;
+        margin-top: 2px;
     }
 </style>
 </html>
+
